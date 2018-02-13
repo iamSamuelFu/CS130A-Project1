@@ -5,29 +5,40 @@ BST::BST() {
 }
 
 BST::~BST() {
-
+	deleteAll(root);
 }
 
-bool BST::searchWord(std::string word) {
+void BST::deleteAll(Node* node) {
+	if (node == NULL)
+		return;
+
+	deleteAll(node->left);
+	deleteAll(node->right);
+	
+	delete node;
+	return;
+}
+
+Node* BST::searchWord(std::string word) {
 	return searchWord(root, word);
 }
 
-bool BST::searchWord(Node* node, std::string word) {
+Node* BST::searchWord(Node* node, std::string word) {
 
 	if (node->word == word) {
-		return true;
+		return node;
 	}
 
     if (node->word > word) {
 
         if (node->left == NULL)
-            return false;
+            return NULL;
         return searchWord(node->left, word);
     }
     else {
 
         if (node->right == NULL)
-            return false;
+            return NULL;
         return searchWord(node->right, word);
     }
 }
@@ -68,8 +79,48 @@ void BST::insertWord(Node* node, std::string word) {
     }
 }
 
-void BST::deleteWord(std::string word) {
+Node* BST::deleteWord(std::string word) {
+	deleteWord(root, word);
+}
 
+Node* BST::deleteWord(Node* node, std::string word) {
+	
+	if (node == NULL)
+		return node;
+
+	if (word < node->word)
+		node->left = deleteWord(node->left, word);
+
+	else if (word > node->word)
+		node->right = deleteWord(node->right, word);
+
+	else {
+
+		if (node->left == NULL) {
+			Node* savedNode = node->right;
+			delete node;
+			return savedNode;
+		}
+		else if (node->right == NULL){
+			Node* savedNode = node->left;
+			delete node;
+			return savedNode;
+		}
+		else {
+
+			//Get leftmost child on right subtree
+			Node* temp = node->right;
+			while (temp->left != NULL)
+				temp = temp->left;
+
+			//Replace node data with temp data
+			node->word = temp->word;
+			node->counter = temp->counter;
+			delete temp;
+		}
+	}
+
+	return node;
 }
 
 void BST::sortWords(std::string filename) {

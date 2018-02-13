@@ -5,6 +5,7 @@
 #include <regex>
 #include <algorithm>
 #include "BST.h"
+#include "Node.h"
 
 std::string getFileContent(std::string filename);
 void fillStopwords(std::vector<std::string>& list, std::string filename);
@@ -55,12 +56,13 @@ int main() {
 	tree.sortWords("output.txt");
 
 	//Search word in BST
-	bool found = tree.searchWord("accesslaundrytelevisioncentrallysss");
-	std::cout << found << std::endl;
+	tree.searchWord("accesslaundrytelevisioncentrally");
+
+	//Delete word in BST
+	tree.deleteWord("abbotts");
 
 	//Search word range in BST
-	tree.searchRange("accodomate", "checkincalled");
-
+	tree.searchRange("aa", "abutting");
 
 	return 0;
 };

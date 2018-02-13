@@ -9,17 +9,19 @@ class BST {
 public:
 	BST();
 	~BST();
-	bool searchWord(std::string word);
+	Node* searchWord(std::string word);
 	void insertWord(std::string word);
-	void deleteWord(std::string word);
+	Node* deleteWord(std::string word);
 	void sortWords(std::string filename);
 	void searchRange(std::string word1, std::string word2);
 
-// private:
+private:
 	void insertWord(Node* node, std::string word);
 	void sortWords(Node* node, std::string filename);
-	bool searchWord(Node* node, std::string word);
+	Node* searchWord(Node* node, std::string word);
 	void searchRange(Node* node, std::string word1, std::string word2);
+	Node* deleteWord(Node* node, std::string word);
+	void deleteAll(Node* node);
 	Node* root;
 
 };
