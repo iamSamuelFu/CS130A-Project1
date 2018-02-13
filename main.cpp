@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <ctime>
 #include "BST.h"
+#include "HashTable.h"
 #include "Node.h"
 
 std::string getFileContent(std::string filename);
@@ -47,6 +48,15 @@ int main() {
 		if (word != "" && !listContains(stopwords, word))
 			words.push_back(word);
 	}
+
+	HashTable table(words.size());
+	for (int i = 0; i < words.size(); i++)
+		table.insertWord(words[i]);
+
+	//Insert words to hashtable
+	for (int i = 100; i < 500; i++)
+		if (table.table[i] != NULL)
+			std::cout << table.table[i]->word << ", " << table.table[i]->counter << std::endl;
 
 	//Insert words to BST
 	BST tree;
@@ -92,7 +102,7 @@ int main() {
 					std::clock_t begin = clock();
 					tree.deleteWord(input1);
 					std::clock_t end = clock();
-					
+
 					std::cout << std::fixed << "BST: " << double(end - begin) / CLOCKS_PER_SEC << "s" << std::endl;
 				}
 				break;
@@ -120,19 +130,6 @@ int main() {
 		};
 
 	}
-
-
-	//Print sorted BST words to output.txt
-	// tree.sortWords("output.txt");
-
-	// //Search word in BST
-	// tree.searchWord("accesslaundrytelevisioncentrally");
-
-	// //Delete word in BST
-	// tree.deleteWord("abbotts");
-
-	// //Search word range in BST
-	// tree.searchRange("aa", "abutting");
 
 	return 0;
 };
