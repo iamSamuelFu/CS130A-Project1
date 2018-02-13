@@ -4,6 +4,7 @@
 #include <dirent.h>
 #include <regex>
 #include <algorithm>
+#include <ctime>
 #include "BST.h"
 #include "Node.h"
 
@@ -51,18 +52,87 @@ int main() {
 	BST tree;
 	for (int i = 0; i < words.size(); i++)
 		tree.insertWord(words[i]);
-	
+
+	//Main
+	while (true) {
+
+		int option;
+		std::cin >> option;
+
+		switch(option) {
+
+			case 1: {
+					std::string input1;
+					std::cin >> input1;
+
+					std::clock_t begin = clock();
+					bool found = (tree.searchWord(input1) != NULL);
+					std::clock_t end = clock();
+
+					std::string message = found? "true": "false";
+					std::cout << message << std::endl;
+					std::cout << std::fixed << "BST: " << double(end - begin) / CLOCKS_PER_SEC << "s" << std::endl;
+				}
+				break;
+			case 2: {
+					std::string input1;
+					std::cin >> input1;
+
+					std::clock_t begin = clock();
+					tree.insertWord(input1);
+					std::clock_t end = clock();
+
+					std::cout << std::fixed << "BST: " << double(end - begin) / CLOCKS_PER_SEC << "s" << std::endl;
+				}
+				break;
+			case 3: {
+					std::string input1;
+					std::cin >> input1;
+
+					std::clock_t begin = clock();
+					tree.deleteWord(input1);
+					std::clock_t end = clock();
+					
+					std::cout << std::fixed << "BST: " << double(end - begin) / CLOCKS_PER_SEC << "s" << std::endl;
+				}
+				break;
+			case 4: {
+					std::cout << "output.txt" << std::endl;
+
+					std::clock_t begin = clock();
+					tree.sortWords("output.txt");
+					std::clock_t end = clock();
+					
+					std::cout << std::fixed << "BST: " << double(end - begin) / CLOCKS_PER_SEC << "s" << std::endl;
+				}
+				break;
+			case 5: {
+					std::string input1, input2;
+					std::cin >> input1 >> input2;
+
+					std::clock_t begin = clock();
+					tree.searchRange(input1, input2);
+					std::clock_t end = clock();
+					
+					std::cout << std::fixed << "BST: " << double(end - begin) / CLOCKS_PER_SEC << "s" << std::endl;
+				}
+				break;
+		};
+
+	}
+
+
 	//Print sorted BST words to output.txt
-	tree.sortWords("output.txt");
+	// tree.sortWords("output.txt");
 
-	//Search word in BST
-	tree.searchWord("accesslaundrytelevisioncentrally");
+	// //Search word in BST
+	// tree.searchWord("accesslaundrytelevisioncentrally");
 
-	//Delete word in BST
-	tree.deleteWord("abbotts");
+	// //Delete word in BST
+	// tree.deleteWord("abbotts");
 
-	//Search word range in BST
-	tree.searchRange("aa", "abutting");
+	// //Search word range in BST
+	// tree.searchRange("aa", "abutting");
 
 	return 0;
 };
