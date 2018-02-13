@@ -14,6 +14,11 @@ std::string cleanWord(std::string str);
 
 int main() {
 
+	//Clean output
+	std::ofstream cleaner("output.txt");
+	cleaner << "";
+	cleaner.close();
+
 	//Get list of stopwords
 	std::vector<std::string> stopwords;
 	fillStopwords(stopwords, "stopwords.txt");
@@ -39,8 +44,23 @@ int main() {
 		word = cleanWord(word);
 		if (word != "" && !listContains(stopwords, word))
 			words.push_back(word);
-		
 	}
+
+	//Insert words to BST
+	BST tree;
+	for (int i = 0; i < words.size(); i++)
+		tree.insertWord(words[i]);
+	
+	//Print sorted BST words to output.txt
+	tree.sortWords("output.txt");
+
+	//Search word in BST
+	bool found = tree.searchWord("accesslaundrytelevisioncentrallysss");
+	std::cout << found << std::endl;
+
+	//Search word range in BST
+	tree.searchRange("accodomate", "checkincalled");
+
 
 	return 0;
 };
