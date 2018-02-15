@@ -105,20 +105,22 @@ void HashTable::sortWords(std::string filename) {
 	writer.close();
 }
 
-void HashTable::searchRange(std::string word1, std::string word2) {
-	int index_word1 = searchWord(word1);
-	int index_word2 = searchWord(word2);
+void HashTable::searchRange(std::string word_lower, std::string word_upper) {
+
+	if (word_lower > word_upper) {
+		std::string temp = word_lower;
+		word_lower = word_upper;
+		word_upper = temp;
+	}
 
 	// Print word of node from index of word1 to index of word2
 	for (int index = 0; index < table_size; index++) {
 		if (table[index] == NULL || table[index]->word == "-1") 
 			continue;
 		
-		if (table[index]->word.compare(word1) >= 0 && table[index]->word.compare(word2) <= 0 )
+		if (table[index]->word.compare(word_lower) >= 0 && table[index]->word.compare(word_upper) <= 0)
 			std::cout << table[index]->word << std::endl;
 	}
-	std::cout << table[index_word2]->word << std::endl;
-	// std::cout<< "Index of word1: " << index_word1 << " Index of word2: " << index_word2 << std::endl;
 }
 
 int HashTable::hashIndex(std::string word) {

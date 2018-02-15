@@ -15,7 +15,7 @@ public:
 	void insertWord(std::string word);
 	Node* deleteWord(std::string word);
 	void sortWords(std::string filename);
-	void searchRange(std::string word1, std::string word2);
+	void searchRange(std::string word_lower, std::string word_upper);
 
 private:
 	int hashIndex(std::string word);

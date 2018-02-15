@@ -151,6 +151,12 @@ void BST::searchRange(Node* node, std::string word1, std::string word2) {
 	if (node == NULL)
 		return;
 
+	if (word1 > word2) {
+		std::string temp = word1;
+		word1 = word2;
+		word2 = temp;
+	}
+
 	searchRange(node->left, word1, word2);
 
 	if (node->word >= word1 && node->word <= word2)
