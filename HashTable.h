@@ -11,7 +11,7 @@ class HashTable {
 public:
 	HashTable(int size);
 	~HashTable();
-	Node* searchWord(std::string word);
+	int searchWord(std::string word);
 	void insertWord(std::string word);
 	Node* deleteWord(std::string word);
 	void sortWords(std::string filename);
@@ -19,6 +19,8 @@ public:
 
 // private:
 	int hashIndex(std::string word);
+	static bool nodeComparison(Node* n1, Node* n2);
+	static int compare(std::string s1, std::string s2);
 	
 	int table_size;
 	Node** table;
