@@ -26,19 +26,18 @@ int HashTable::searchWord(std::string word) {
 			result = index;
 		}	
 		else {
+
 			bool found = false;
-			for (int i = index + 1; !found; i++) {
+			int i = 0;
+			for (int times = 1; !found; times++) {
+				i = index + times * times;
 				i = i % table_size;
 
 				if (table[i] == NULL) {
 					found = true;
 					result = -1;
 				}
-
-				if (table[i]->word == "-1" )
-					continue;
-					
-				else if (table[i]->word == word) {
+				else if (table[i]->word != "-1" && table[i]->word == word) {
 					found = true;
 					result = i;
 				}
@@ -64,7 +63,9 @@ void HashTable::insertWord(std::string word) {
 		else {
 
 			bool inserted = false;
-			for (int i = index + 1; !inserted; i++) {
+			int i = 0;
+			for (int times = 1; !inserted; times++) {
+				i = index + times * times;
 				i = i % table_size;
 
 				if (table[i] == NULL) {
@@ -123,7 +124,7 @@ void HashTable::searchRange(std::string word1, std::string word2) {
 int HashTable::hashIndex(std::string word) {
 	int num = 0;
 	for (int i = 0; i < word.size(); i++)
-		num += int(word[i]);
+		num += int(word[i]) - int('a');
 	return num % table_size;
 }
 

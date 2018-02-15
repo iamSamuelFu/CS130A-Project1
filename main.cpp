@@ -53,11 +53,6 @@ int main() {
 	HashTable table(words.size());
 	for (int i = 0; i < words.size(); i++)
 		table.insertWord(words[i]);
-	std::cout << "done" << std::endl;
-
-	//Sort words using hashtable
-	table.sortWords("output.txt");
-
 
 	//Insert words to BST
 	BST tree;
@@ -65,7 +60,6 @@ int main() {
 		tree.insertWord(words[i]);
 
 	//Main
-
 	while (true) {
 
 		int option;
@@ -76,57 +70,85 @@ int main() {
 			case 1: {
 					std::string input1;
 					std::cin >> input1;
+					bool found = false;
 
-					std::clock_t begin = clock();
-					bool found = (tree.searchWord(input1) != NULL);
-					std::clock_t end = clock();
+					std::clock_t begin_bst = clock();
+					found = (tree.searchWord(input1) != NULL);
+					std::clock_t end_bst = clock();
+
+
+					std::clock_t begin_hash = clock();
+					found = (table.searchWord(input1) != -1);
+					std::clock_t end_hash = clock();
+
 
 					std::string message = found? "true": "false";
 					std::cout << message << std::endl;
-					std::cout << std::fixed << "BST: " << double(end - begin) / CLOCKS_PER_SEC << "s" << std::endl;
+					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
 				}
 				break;
 			case 2: {
 					std::string input1;
 					std::cin >> input1;
 
-					std::clock_t begin = clock();
+					std::clock_t begin_bst = clock();
 					tree.insertWord(input1);
-					std::clock_t end = clock();
+					std::clock_t end_bst = clock();
 
-					std::cout << std::fixed << "BST: " << double(end - begin) / CLOCKS_PER_SEC << "s" << std::endl;
+					std::clock_t begin_hash = clock();
+					table.insertWord(input1);
+					std::clock_t end_hash = clock();
+
+					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
 				}
 				break;
 			case 3: {
 					std::string input1;
 					std::cin >> input1;
 
-					std::clock_t begin = clock();
+					std::clock_t begin_bst = clock();
 					tree.deleteWord(input1);
-					std::clock_t end = clock();
+					std::clock_t end_bst = clock();
 
-					std::cout << std::fixed << "BST: " << double(end - begin) / CLOCKS_PER_SEC << "s" << std::endl;
+					std::clock_t begin_hash = clock();
+					table.deleteWord(input1);
+					std::clock_t end_hash = clock();
+
+					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
 				}
 				break;
 			case 4: {
 					std::cout << "output.txt" << std::endl;
 
-					std::clock_t begin = clock();
+					std::clock_t begin_bst = clock();
 					tree.sortWords("output.txt");
-					std::clock_t end = clock();
+					std::clock_t end_bst = clock();
+
+					std::clock_t begin_hash = clock();
+					table.sortWords("output.txt");
+					std::clock_t end_hash = clock();
 					
-					std::cout << std::fixed << "BST: " << double(end - begin) / CLOCKS_PER_SEC << "s" << std::endl;
+					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
 				}
 				break;
 			case 5: {
 					std::string input1, input2;
 					std::cin >> input1 >> input2;
 
-					std::clock_t begin = clock();
+					std::clock_t begin_bst = clock();
 					tree.searchRange(input1, input2);
-					std::clock_t end = clock();
+					std::clock_t end_bst = clock();
+
+					std::clock_t begin_hash = clock();
+					table.searchRange(input1, input2);
+					std::clock_t end_hash = clock();
 					
-					std::cout << std::fixed << "BST: " << double(end - begin) / CLOCKS_PER_SEC << "s" << std::endl;
+					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
 				}
 				break;
 		};
