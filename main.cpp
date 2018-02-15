@@ -121,14 +121,20 @@ int main() {
 				}
 				break;
 			case 4: {
-					std::cout << "output.txt" << std::endl;
+					std::string filename = "output.txt";
+					std::cout << filename<< std::endl;
 
 					std::clock_t begin_bst = clock();
-					tree.sortWords("output.txt");
+					tree.sortWords(filename);
 					std::clock_t end_bst = clock();
+		
+					std::ofstream writer;
+					writer.open(filename, std::ios_base::app);
+					writer << std::endl;
+					writer.close();
 
 					std::clock_t begin_hash = clock();
-					table.sortWords("output.txt");
+					table.sortWords(filename);
 					std::clock_t end_hash = clock();
 					
 					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
