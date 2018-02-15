@@ -49,24 +49,15 @@ int main() {
 			words.push_back(word);
 	}
 
+	//Insert words to hashtable
 	HashTable table(words.size());
 	for (int i = 0; i < words.size(); i++)
 		table.insertWord(words[i]);
 	std::cout << "done" << std::endl;
 
-	//Insert words to hashtable
-	// for (int i = 100; i < 500; i++)
-	// 	if (table.table[i] != NULL)
-	// 		std::cout << table.table[i]->word << ", " << table.table[i]->counter << std::endl;
-
-	// Hashtable Main
-	int result = 0;
-	result = table.searchWord("yu");
-	std::cout << "index of yu: " << result << std::endl;
-
+	//Sort words using hashtable
 	table.sortWords("output.txt");
 
-	//table.searchRange("aa", "breakfast");
 
 	//Insert words to BST
 	BST tree;

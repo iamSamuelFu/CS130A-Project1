@@ -17,10 +17,9 @@ public:
 	void sortWords(std::string filename);
 	void searchRange(std::string word1, std::string word2);
 
-// private:
+private:
 	int hashIndex(std::string word);
 	static bool nodeComparison(Node* n1, Node* n2);
-	static int compare(std::string s1, std::string s2);
 	
 	int table_size;
 	Node** table;
