@@ -59,6 +59,8 @@ int main() {
 	for (int i = 0; i < words.size(); i++)
 		tree.insertWord(words[i]);
 
+	std::cout << "Words insertion into hashtable and BST complete" << std::endl;
+
 	//Main
 	while (true) {
 
@@ -157,6 +159,137 @@ int main() {
 					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
 				}
 				break;
+			case 6: {
+					std::cout << "tabulation data collection begin" << std::endl;
+
+					std::cout << "<-----100 INSERTIONS BEGIN----->\n";
+					std::clock_t begin_bst = clock();
+					for (int i = 0; i < 100; i++)
+						tree.insertWord(words[i] + "s");
+						std::cout << "insert";
+					std::clock_t end_bst = clock();
+
+					std::clock_t begin_hash = clock();
+					for (int i = 0; i < 100; i++)
+						table.insertWord(words[i] + "s");
+					std::clock_t end_hash = clock();
+
+					std::cout << std::fixed << "BST:" << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl; 	
+					std::cout << "<-----100 INSERTIONS END----->\n\n";
+
+
+					// bool found;
+
+					// std::cout << "<-----100 SEARCHES BEGIN----->\n";
+					// begin_bst = clock();
+					// for (int i = 0; i < 100; i++)
+					// 	found = (tree.searchWord(words[i] + "s") != NULL);
+					// end_bst = clock();
+
+
+					// begin_hash = clock();
+					// for (int i = 0; i < 100; i++)
+					// 	found = (table.searchWord(words[i] + "s") != -1);
+					// end_hash = clock();
+
+					// std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
+					// std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+					// std::cout << "<-----100 SEARCHES END----->\n\n";	
+
+
+
+
+					// std::cout << "<-----100 DELETES BEGIN----->\n";
+					// begin_bst = clock();
+					// for (int i = 0; i < 100; i++)
+					// 	tree.deleteWord(words[i]);
+					// end_bst = clock();
+
+					// begin_hash = clock();
+					// for (int i = 0; i < 100; i++)
+					// 	table.deleteWord(words[i]);
+					// end_hash = clock();
+
+					// std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
+					// std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+					// std::cout << "<-----100 DELETES END----->\n\n";
+
+
+
+
+		// 			std::cout << "<-----10 RANGE SEARCH BEGIN----->\n";
+
+		// 			begin_bst = clock();
+		// 			tree.searchRange("aber", "abotts");
+		// 			end_bst = clock();
+
+		// 			begin_hash = clock();
+		// 			table.searchRange("aber", "abotts");
+		// 			end_hash = clock();
+					
+		// 			std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
+		// 			std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+		// 			std::cout << "<-----10 RANGE SEARCH END----->\n\n";	
+
+
+
+		// 			std::cout << "<-----100 RANGE SEARCH BEGIN----->\n";
+
+		// 			begin_bst = clock();
+		// 			tree.searchRange("aber", "accomodatingoverall");
+		// 			end_bst = clock();
+
+		// 			begin_hash = clock();
+		// 			table.searchRange("aber", "accomodatingoverall");
+		// 			end_hash = clock();
+					
+		// 			std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
+		// 			std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+		// 			std::cout << "<-----100 RANGE SEARCH END----->\n\n";				
+
+
+
+
+		// 			std::cout << "<-----1000 RANGE SEARCH BEGIN----->\n";
+
+		// 			begin_bst = clock();
+		// 			tree.searchRange("aber", "apr");
+		// 			end_bst = clock();
+
+		// 			begin_hash = clock();
+		// 			table.searchRange("aber", "apr");
+		// 			end_hash = clock();
+					
+		// 			std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
+		// 			std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+		// 			std::cout << "<-----1000 RANGE SEARCH END----->\n\n";
+
+
+
+
+		// 			std::cout << "<-----SORT BEGIN----->\n";
+		// 			std::string filename = "output.txt";
+		// 			std::cout << filename<< std::endl;
+
+		// 			begin_bst = clock();
+		// 			tree.sortWords(filename);
+		// 			end_bst = clock();
+		
+		// 			std::ofstream writer;
+		// 			writer.open(filename, std::ios_base::app);
+		// 			writer << std::endl;
+		// 			writer.close();
+
+		// 			begin_hash = clock();
+		// 			table.sortWords(filename);
+		// 			end_hash = clock();
+					
+		// 			std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
+		// 			std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+		// 			std::cout << "<-----SORT END----->\n\n";
+		 	}
+			break;
 		};
 
 		std::cout << std::endl;
