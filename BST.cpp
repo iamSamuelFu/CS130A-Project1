@@ -116,6 +116,7 @@ Node* BST::deleteWord(Node* node, std::string word) {
 			//Replace node data with temp data
 			node->word = temp->word;
 			node->counter = temp->counter;
+			temp = NULL;
 			delete temp;
 		}
 	}

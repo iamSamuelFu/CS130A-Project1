@@ -269,7 +269,7 @@ int main() {
 
 					std::cout << "<-----SORT BEGIN----->\n";
 					std::string filename = "output.txt";
-					std::cout << filename<< std::endl;
+					std::cout << filename << std::endl;
 
 					begin_bst = clock();
 					tree.sortWords(filename);
