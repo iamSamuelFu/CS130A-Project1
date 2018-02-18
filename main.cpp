@@ -59,7 +59,7 @@ int main() {
 	for (int i = 0; i < words.size(); i++)
 		tree.insertWord(words[i]);
 
-	std::cout << "Words insertion into hashtable and BST complete" << std::endl;
+	std::cout << "Words insertion into Hashtable and BST completed." << std::endl;
 
 	//Main
 	while (true) {
@@ -164,9 +164,8 @@ int main() {
 
 					std::cout << "<-----100 INSERTIONS BEGIN----->\n";
 					std::clock_t begin_bst = clock();
-					for (int i = 0; i < 100; i++)
+					for (int i = 0; i < 100; i++) 
 						tree.insertWord(words[i] + "s");
-						std::cout << "insert";
 					std::clock_t end_bst = clock();
 
 					std::clock_t begin_hash = clock();
