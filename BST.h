@@ -18,7 +18,7 @@ public:
 
 private:
 	void insertWord(Node* node, std::string word);
-	void sortWords(Node* node, std::string filename);
+	void sortWords(std::ofstream& writer, Node* node, std::string filename);
 	Node* searchWord(Node* node, std::string word);
 	void searchRange(Node* node, std::string word1, std::string word2);
 	Node* deleteWord(Node* node, std::string word);

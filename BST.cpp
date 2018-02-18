@@ -125,22 +125,22 @@ Node* BST::deleteWord(Node* node, std::string word) {
 }
 
 void BST::sortWords(std::string filename) {
-	sortWords(root, filename);
+	std::ofstream writer;
+	writer.open(filename, std::ios_base::app);
+	sortWords(writer, root, filename);
+	writer.close();
 }
 
-void BST::sortWords(Node* node, std::string filename) {
+void BST::sortWords(std::ofstream& writer, Node* node, std::string filename) {
 	
 	if (node == NULL)
 		return;
 
-	sortWords(node->left, filename);
+	sortWords(writer, node->left, filename);
 
-	std::ofstream writer;
-	writer.open(filename, std::ios_base::app);
 	writer << node->word << std::endl;
-	writer.close();
 
-	sortWords(node->right, filename);
+	sortWords(writer, node->right, filename);
 }
 
 void BST::searchRange(std::string word1, std::string word2) {
