@@ -5,6 +5,7 @@
 #include <regex>
 #include <algorithm>
 #include <ctime>
+#include <chrono>
 #include "BST.h"
 #include "HashTable.h"
 #include "Node.h"
@@ -74,144 +75,161 @@ int main() {
 					std::cin >> input1;
 					bool found = false;
 
-					std::clock_t begin_bst = clock();
+					std::chrono::high_resolution_clock::time_point begin_bst = std::chrono::high_resolution_clock::now();
 					found = (tree.searchWord(input1) != NULL);
-					std::clock_t end_bst = clock();
+					std::chrono::high_resolution_clock::time_point end_bst = std::chrono::high_resolution_clock::now();
 
 
-					std::clock_t begin_hash = clock();
+					std::chrono::high_resolution_clock::time_point begin_hash = std::chrono::high_resolution_clock::now();
 					found = (table.searchWord(input1) != -1);
-					std::clock_t end_hash = clock();
+					std::chrono::high_resolution_clock::time_point end_hash = std::chrono::high_resolution_clock::now();
 
 
 					std::string message = found? "true": "false";
 					std::cout << message << std::endl;
-					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
-					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+
+					std::chrono::duration<double> time_span_bst = end_bst - begin_bst;
+					std::chrono::duration<double> time_span_hash = end_hash - begin_hash;
+					std::cout << std::fixed << "BST: " << time_span_bst.count() << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << time_span_hash.count() << "s" << std::endl;
 				}
 				break;
 			case 2: {
 					std::string input1;
 					std::cin >> input1;
 
-					std::clock_t begin_bst = clock();
+					std::chrono::high_resolution_clock::time_point begin_bst = std::chrono::high_resolution_clock::now();
 					tree.insertWord(input1);
-					std::clock_t end_bst = clock();
+					std::chrono::high_resolution_clock::time_point end_bst = std::chrono::high_resolution_clock::now();
 
-					std::clock_t begin_hash = clock();
+					std::chrono::high_resolution_clock::time_point begin_hash = std::chrono::high_resolution_clock::now();
 					table.insertWord(input1);
-					std::clock_t end_hash = clock();
+					std::chrono::high_resolution_clock::time_point end_hash = std::chrono::high_resolution_clock::now();
 
-					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
-					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+					std::chrono::duration<double> time_span_bst = end_bst - begin_bst;
+					std::chrono::duration<double> time_span_hash = end_hash - begin_hash;
+					std::cout << std::fixed << "BST: " << time_span_bst.count() << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << time_span_hash.count() << "s" << std::endl;
 				}
 				break;
 			case 3: {
 					std::string input1;
 					std::cin >> input1;
 
-					std::clock_t begin_bst = clock();
+					std::chrono::high_resolution_clock::time_point begin_bst = std::chrono::high_resolution_clock::now();
 					tree.deleteWord(input1);
-					std::clock_t end_bst = clock();
+					std::chrono::high_resolution_clock::time_point end_bst = std::chrono::high_resolution_clock::now();
 
-					std::clock_t begin_hash = clock();
+					std::chrono::high_resolution_clock::time_point begin_hash = std::chrono::high_resolution_clock::now();
 					table.deleteWord(input1);
-					std::clock_t end_hash = clock();
+					std::chrono::high_resolution_clock::time_point end_hash = std::chrono::high_resolution_clock::now();
 
-					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
-					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+					std::chrono::duration<double> time_span_bst = end_bst - begin_bst;
+					std::chrono::duration<double> time_span_hash = end_hash - begin_hash;
+					std::cout << std::fixed << "BST: " << time_span_bst.count() << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << time_span_hash.count() << "s" << std::endl;
 				}
 				break;
 			case 4: {
 					std::string filename = "output.txt";
 					std::cout << filename<< std::endl;
 
-					std::clock_t begin_bst = clock();
+					std::chrono::high_resolution_clock::time_point begin_bst = std::chrono::high_resolution_clock::now();
 					tree.sortWords(filename);
-					std::clock_t end_bst = clock();
+					std::chrono::high_resolution_clock::time_point end_bst = std::chrono::high_resolution_clock::now();
 		
 					std::ofstream writer;
 					writer.open(filename, std::ios_base::app);
 					writer << std::endl;
 					writer.close();
 
-					std::clock_t begin_hash = clock();
+					std::chrono::high_resolution_clock::time_point begin_hash = std::chrono::high_resolution_clock::now();
 					table.sortWords(filename);
-					std::clock_t end_hash = clock();
+					std::chrono::high_resolution_clock::time_point end_hash = std::chrono::high_resolution_clock::now();
 					
-					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
-					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+					std::chrono::duration<double> time_span_bst = end_bst - begin_bst;
+					std::chrono::duration<double> time_span_hash = end_hash - begin_hash;
+					std::cout << std::fixed << "BST: " << time_span_bst.count() << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << time_span_hash.count() << "s" << std::endl;
 				}
 				break;
 			case 5: {
 					std::string input1, input2;
 					std::cin >> input1 >> input2;
 
-					std::clock_t begin_bst = clock();
+					std::chrono::high_resolution_clock::time_point begin_bst = std::chrono::high_resolution_clock::now();
 					tree.searchRange(input1, input2);
-					std::clock_t end_bst = clock();
+					std::chrono::high_resolution_clock::time_point end_bst = std::chrono::high_resolution_clock::now();
 
-					std::clock_t begin_hash = clock();
+					std::chrono::high_resolution_clock::time_point begin_hash = std::chrono::high_resolution_clock::now();
 					table.searchRange(input1, input2);
-					std::clock_t end_hash = clock();
+					std::chrono::high_resolution_clock::time_point end_hash = std::chrono::high_resolution_clock::now();
 					
-					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
-					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+					std::chrono::duration<double> time_span_bst = end_bst - begin_bst;
+					std::chrono::duration<double> time_span_hash = end_hash - begin_hash;
+					std::cout << std::fixed << "BST: " << time_span_bst.count() << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << time_span_hash.count() << "s" << std::endl;
 				}
 				break;
 			case 6: {
 					std::cout << "tabulation data collection begin" << std::endl;
 
 					std::cout << "<-----100 INSERTIONS BEGIN----->\n";
-					std::clock_t begin_bst = clock();
+					std::chrono::high_resolution_clock::time_point begin_bst = std::chrono::high_resolution_clock::now();
 					for (int i = 0; i < 100; i++) 
 						tree.insertWord(words[i] + "s");
-					std::clock_t end_bst = clock();
+					std::chrono::high_resolution_clock::time_point end_bst = std::chrono::high_resolution_clock::now();
 
-					std::clock_t begin_hash = clock();
+					std::chrono::high_resolution_clock::time_point begin_hash = std::chrono::high_resolution_clock::now();
 					for (int i = 0; i < 100; i++)
 						table.insertWord(words[i] + "s");
-					std::clock_t end_hash = clock();
+					std::chrono::high_resolution_clock::time_point end_hash = std::chrono::high_resolution_clock::now();
 
-					std::cout << std::fixed << "BST:" << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
-					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl; 	
+					std::chrono::duration<double> time_span_bst = end_bst - begin_bst;
+					std::chrono::duration<double> time_span_hash = end_hash - begin_hash;
+					std::cout << std::fixed << "BST: " << time_span_bst.count() << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << time_span_hash.count() << "s" << std::endl;	
 					std::cout << "<-----100 INSERTIONS END----->\n\n";
 
 
 					bool found;
 
 					std::cout << "<-----100 SEARCHES BEGIN----->\n";
-					begin_bst = clock();
+					begin_bst = std::chrono::high_resolution_clock::now();
 					for (int i = 0; i < 100; i++)
 						found = (tree.searchWord(words[i] + "s") != NULL);
-					end_bst = clock();
+					end_bst = std::chrono::high_resolution_clock::now();
 
 
-					begin_hash = clock();
+					begin_hash = std::chrono::high_resolution_clock::now();
 					for (int i = 0; i < 100; i++)
 						found = (table.searchWord(words[i] + "s") != -1);
-					end_hash = clock();
+					end_hash = std::chrono::high_resolution_clock::now();
 
-					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
-					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+					time_span_bst = end_bst - begin_bst;
+					time_span_hash = end_hash - begin_hash;
+					std::cout << std::fixed << "BST: " << time_span_bst.count() << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << time_span_hash.count() << "s" << std::endl;
 					std::cout << "<-----100 SEARCHES END----->\n\n";	
 
 
 
 
 					std::cout << "<-----100 DELETES BEGIN----->\n";
-					begin_bst = clock();
+					begin_bst = std::chrono::high_resolution_clock::now();
 					for (int i = 0; i < 100; i++)
 						tree.deleteWord(words[i]);
-					end_bst = clock();
+					end_bst = std::chrono::high_resolution_clock::now();
 
-					begin_hash = clock();
+					begin_hash = std::chrono::high_resolution_clock::now();
 					for (int i = 0; i < 100; i++)
 						table.deleteWord(words[i]);
-					end_hash = clock();
+					end_hash = std::chrono::high_resolution_clock::now();
 
-					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
-					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+					time_span_bst = end_bst - begin_bst;
+					time_span_hash = end_hash - begin_hash;
+					std::cout << std::fixed << "BST: " << time_span_bst.count() << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << time_span_hash.count() << "s" << std::endl;
 					std::cout << "<-----100 DELETES END----->\n\n";
 
 
@@ -219,32 +237,36 @@ int main() {
 
 					std::cout << "<-----10 RANGE SEARCH BEGIN----->\n";
 
-					begin_bst = clock();
+					begin_bst = std::chrono::high_resolution_clock::now();
 					tree.searchRange("aber", "abotts");
-					end_bst = clock();
+					end_bst = std::chrono::high_resolution_clock::now();
 
-					begin_hash = clock();
+					begin_hash = std::chrono::high_resolution_clock::now();
 					table.searchRange("aber", "abotts");
-					end_hash = clock();
+					end_hash = std::chrono::high_resolution_clock::now();
 					
-					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
-					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+					time_span_bst = end_bst - begin_bst;
+					time_span_hash = end_hash - begin_hash;
+					std::cout << std::fixed << "BST: " << time_span_bst.count() << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << time_span_hash.count() << "s" << std::endl;
 					std::cout << "<-----10 RANGE SEARCH END----->\n\n";	
 
 
 
 					std::cout << "<-----100 RANGE SEARCH BEGIN----->\n";
 
-					begin_bst = clock();
+					begin_bst = std::chrono::high_resolution_clock::now();
 					tree.searchRange("aber", "accomodatingoverall");
-					end_bst = clock();
+					end_bst = std::chrono::high_resolution_clock::now();
 
-					begin_hash = clock();
+					begin_hash = std::chrono::high_resolution_clock::now();
 					table.searchRange("aber", "accomodatingoverall");
-					end_hash = clock();
-					
-					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
-					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+					end_hash = std::chrono::high_resolution_clock::now();
+
+					time_span_bst = end_bst - begin_bst;
+					time_span_hash = end_hash - begin_hash;
+					std::cout << std::fixed << "BST: " << time_span_bst.count() << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << time_span_hash.count() << "s" << std::endl;
 					std::cout << "<-----100 RANGE SEARCH END----->\n\n";				
 
 
@@ -252,16 +274,18 @@ int main() {
 
 					std::cout << "<-----1000 RANGE SEARCH BEGIN----->\n";
 
-					begin_bst = clock();
+					begin_bst = std::chrono::high_resolution_clock::now();
 					tree.searchRange("aber", "apr");
-					end_bst = clock();
+					end_bst = std::chrono::high_resolution_clock::now();
 
-					begin_hash = clock();
+					begin_hash = std::chrono::high_resolution_clock::now();
 					table.searchRange("aber", "apr");
-					end_hash = clock();
+					end_hash = std::chrono::high_resolution_clock::now();
 					
-					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
-					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+					time_span_bst = end_bst - begin_bst;
+					time_span_hash = end_hash - begin_hash;
+					std::cout << std::fixed << "BST: " << time_span_bst.count() << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << time_span_hash.count() << "s" << std::endl;
 					std::cout << "<-----1000 RANGE SEARCH END----->\n\n";
 
 
@@ -271,21 +295,23 @@ int main() {
 					std::string filename = "output.txt";
 					std::cout << filename << std::endl;
 
-					begin_bst = clock();
+					begin_bst = std::chrono::high_resolution_clock::now();
 					tree.sortWords(filename);
-					end_bst = clock();
+					end_bst = std::chrono::high_resolution_clock::now();
 		
 					std::ofstream writer;
 					writer.open(filename, std::ios_base::app);
 					writer << std::endl;
 					writer.close();
 
-					begin_hash = clock();
+					begin_hash = std::chrono::high_resolution_clock::now();
 					table.sortWords(filename);
-					end_hash = clock();
+					end_hash = std::chrono::high_resolution_clock::now();
 					
-					std::cout << std::fixed << "BST: " << double(end_bst - begin_bst) / CLOCKS_PER_SEC << "s" << std::endl;
-					std::cout << std::fixed << "Hash: " << double(end_hash - begin_hash) / CLOCKS_PER_SEC << "s" << std::endl;
+					time_span_bst = end_bst - begin_bst;
+					time_span_hash = end_hash - begin_hash;
+					std::cout << std::fixed << "BST: " << time_span_bst.count() << "s" << std::endl;
+					std::cout << std::fixed << "Hash: " << time_span_hash.count() << "s" << std::endl;
 					std::cout << "<-----SORT END----->\n\n";
 		 	}
 			break;
