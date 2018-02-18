@@ -83,8 +83,12 @@ void HashTable::insertWord(std::string word) {
 }
 
 Node* HashTable::deleteWord(std::string word) {
-	Node* toDelete = table[searchWord(word)];
-	toDelete->word = "-1";	
+	int index = searchWord(word);
+	if (index == -1)
+		return NULL;
+
+	Node* toDelete = table[index];
+	toDelete->word = "-1";
 	toDelete->counter = 0;
 	return toDelete;
 }
