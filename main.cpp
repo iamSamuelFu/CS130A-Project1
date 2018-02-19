@@ -60,7 +60,7 @@ int main() {
 	for (int i = 0; i < words.size(); i++)
 		tree.insertWord(words[i]);
 
-	std::cout << "Words insertion into Hashtable and BST completed." << std::endl;
+	//std::cout << "Words insertion into Hashtable and BST completed." << std::endl;
 
 	//Main
 	while (true) {
